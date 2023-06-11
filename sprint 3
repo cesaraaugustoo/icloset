@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27 combinações - icloset</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body background="img/fundo.jpg">
+    <div id="meioSite">
+
+    
+    <div id="barraEsquerda"></div>
+    <div id="barraCentro">
+        <div id="divPai">
+            <div id="linha1"></div>
+            <div id="linha2"></div>
+            <div id="linha3"></div>
+        </div>
+
+    </div>
+    <div id="barraDireita"></div>
+</div>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
+
+
+
+const savedImageUrls = JSON.parse(localStorage.getItem('imageUrls'));
+const camisas = [
+  new Image(),
+  new Image(),
+  new Image()
+];
+const calcas = [
+  new Image(),
+  new Image(),
+  new Image()
+];
+const tenis = [
+  new Image(),
+  new Image(),
+  new Image()
+];
+
+camisas[0].src = savedImageUrls.image1;
+camisas[1].src = savedImageUrls.image2;
+camisas[2].src = savedImageUrls.image3;
+
+calcas[0].src = savedImageUrls.image4;
+calcas[1].src = savedImageUrls.image5;
+calcas[2].src = savedImageUrls.image6;
+
+tenis[0].src = savedImageUrls.image7;
+tenis[1].src = savedImageUrls.image8;
+tenis[2].src = savedImageUrls.image9;
+
+const combinations = [];
+
+for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    for (let k = 0; k < 3; k++) {
+      const combination = {
+        camisa: camisas[i].src,
+        calca: calcas[j].src,
+        tenis: tenis[k].src
+      };
+      combinations.push(combination);
+    }
+  }
+}
+
+const linha1 = document.getElementById("linha1");
+const linha2 = document.getElementById("linha2");
+const linha3 = document.getElementById("linha3");
+
+for (let i = 0; i < 3; i++) {
+  const divCombination = document.createElement("div");
+  divCombination.classList.add("combination");
+  
+  const combination = combinations.slice(i * 9, (i + 1) * 9);
+
+  for (const item of combination) {
+    const divImage = document.createElement("div");
+    divImage.classList.add("image-container");
+
+    const imgCamisa = document.createElement("img");
+    imgCamisa.src = item.camisa;
+    imgCamisa.classList.add('tamanho');
+    divImage.appendChild(imgCamisa);
+
+    const imgCalca = document.createElement("img");
+    imgCalca.src = item.calca;
+    imgCalca.classList.add('tamanho');
+    divImage.appendChild(imgCalca);
+
+    const imgTenis = document.createElement("img");
+    imgTenis.src = item.tenis;
+    imgTenis.classList.add('tamanho');
+    divImage.appendChild(imgTenis);
+
+    divCombination.appendChild(divImage);
+  }
+
+  if (i === 0) {
+    linha1.appendChild(divCombination);
+  } else if (i === 1) {
+    linha2.appendChild(divCombination);
+  } else if (i === 2) {
+    linha3.appendChild(divCombination);
+  }
+}
+
+
+html{
+    height: 100%;
+    
+     
+  }
+  
+  body {
+    margin: 0px;
+    background: url(image/imagemFundo.jpg) no-repeat ;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    
+  }
+.tamanho
+{
+    width:70px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.combination {
+    display: flex;
+}
+
+#meioSite {
+    display: flex;
+}
+
+#divPai {
+    
+    align-items: center;
+    justify-content: center;
+}
+
+#barraEsquerda {
+    width: 25%;
+  }
+
+  #barraCentro {
+    margin: 1%;
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 7px 7px 18px rgb(62, 63, 63);
+  }
+
+  #barraDireita {
+    width: 25%;
+  }
+
+  #linha1 {
+    margin: 1px;
+    border: 2px solid rgb(86, 86, 219);
+  }
+
+  #linha2 {
+    margin: 1px;
+    border: 2px solid rgb(86, 86, 219);
+  }
+
+  #linha3 {
+    margin: 1px;
+    border: 2px solid rgb(86, 86, 219);
+  }
